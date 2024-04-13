@@ -1,3 +1,5 @@
+package ru.netology.task1;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
