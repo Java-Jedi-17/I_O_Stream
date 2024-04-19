@@ -47,11 +47,15 @@ public class MainTask2 {
         try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(path))) {
             for (String arr : arrayList) {
                 try (FileInputStream fis = new FileInputStream(arr)) {
-                    ZipEntry entry = new ZipEntry(arr);
+                    File file = new File(arr);
+                    ZipEntry entry = new ZipEntry(file.getName());
                     zos.putNextEntry(entry);
-                    while (fis.available() > 0) {
-                        zos.write(fis.read());
-                    }
+                    byte[] buffer = new byte[fis.available()];
+//                    while (fis.available() > 0) {
+//                        zos.write(fis.read());
+//                    }
+                    fis.read(buffer);
+                    zos.write(buffer);
                     zos.closeEntry();
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
